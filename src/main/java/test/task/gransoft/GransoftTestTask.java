@@ -15,6 +15,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+/**
+ * This project is a single-page Java Swing application designed to visualize the quick-sort algorithm.
+ * The application has two main screens: the Intro screen, where the user enters the number of random
+ * numbers to display and sort, and the Sort screen, which visualizes the quick-sort process step by step.
+ *
+ * In the Intro screen, the user specifies the number of random integers to generate, with an upper limit of 1000.
+ * After the user enters a valid number, the application switches to the Sort screen, where the random numbers
+ * The quick-sort algorithm is visually represented through color changes of the buttons.
+ *
+ * During sorting, the pivot is highlighted in red, and comparisons are shown by changing the colors of the buttons.
+ * Once the sorting is complete, all the sorted numbers are highlighted in green. The user can reset the application
+ * and return to the Intro screen by pressing the "Reset" button.
+ */
 public class GransoftTestTask extends JFrame {
     private JFrame sortingFrame;
     private JPanel numbersPanel;
