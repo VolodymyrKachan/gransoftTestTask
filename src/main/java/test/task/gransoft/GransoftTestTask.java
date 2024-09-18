@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class GransoftTestTask extends JFrame {
     private JFrame sortingFrame;
@@ -21,6 +27,10 @@ public class GransoftTestTask extends JFrame {
     private int numberOfNumbers;
     private Thread sortThread;
 
+    /**
+     * Initializes the main GUI for the application,
+     * where the user inputs the number of numbers to sort.
+     */
     private void initializeGUI() {
         setTitle("Gransoft Test Task");
         setSize(1200, 600);
@@ -49,6 +59,10 @@ public class GransoftTestTask extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Sets up the action listener for the "Enter" button.
+     * It validates the input number and switches to the sorting screen if the input is valid.
+     */
     private void setupEnterButtonListener() {
         enterButton.addActionListener(actionEvent -> {
             try {
@@ -71,6 +85,10 @@ public class GransoftTestTask extends JFrame {
         });
     }
 
+    /**
+     * Sets up the action listener for the "Sort" button, which starts the sorting process
+     * in a separate thread and disables the buttons during sorting.
+     */
     private void setupStartSortButtonListener() {
         sortButton.addActionListener(actionEvent -> {
             for (JButton btn : numberButtons) {
@@ -84,6 +102,10 @@ public class GransoftTestTask extends JFrame {
         });
     }
 
+    /**
+     * Sets up the action listener for the "Reset" button,
+     * which resets the sorting frame and returns to the initial input screen.
+     */
     private void setupResetButtonListener() {
         resetButton.addActionListener(actionEvent -> {
             sortingFrame.setVisible(false);
@@ -92,7 +114,10 @@ public class GransoftTestTask extends JFrame {
         });
     }
 
-
+    /**
+     * Creates the sorting screen frame, which contains the number buttons,
+     * "Sort" and "Reset" buttons, and initializes the layout.
+     */
     private void createSortScreenFrame() {
         sortingFrame = new JFrame("Sort Screen");
         sortingFrame.setSize(1200, 600);
@@ -135,6 +160,12 @@ public class GransoftTestTask extends JFrame {
         }
     }
 
+    /**
+     * Initializes the panel with buttons representing random numbers and adds
+     * them to the sorting screen, with layout adjustments based on the number of numbers.
+     *
+     * @param size The number of buttons to display.
+     */
     private void initializeNumberList(int size) {
         final int MAX_ROWS = 10;
         final int BUTTON_WIDTH = 95;
@@ -182,6 +213,14 @@ public class GransoftTestTask extends JFrame {
         numbersPanel.repaint();
     }
 
+    /**
+     * Implements the QuickSort algorithm for sorting the list of numbers.
+     * Visual feedback is provided by changing button colors during the sorting process.
+     *
+     * @param numberList The list of numbers to be sorted.
+     * @param lowIndex The starting index of the list/sublist to sort.
+     * @param highIndex The ending index of the list/sublist to sort.
+     */
     private void quickSort(List<Integer> numberList, int lowIndex, int highIndex) {
         if (lowIndex < highIndex) {
             numberButtons.forEach(button -> button.setEnabled(false));
@@ -200,6 +239,15 @@ public class GransoftTestTask extends JFrame {
         }
     }
 
+    /**
+     * Partitions the list into two halves based on the pivot value,
+     * moving elements smaller than the pivot to the left and larger elements to the right.
+     *
+     * @param numberList The list of numbers to partition.
+     * @param lowIndex The starting index of the sublist to partition.
+     * @param highIndex The ending index of the sublist to partition.
+     * @return The index where the partitioning ends.
+     */
     private int partitionListByPivot(List<Integer> numberList, int lowIndex, int highIndex) {
         int left = lowIndex;
         int right = highIndex;
@@ -240,6 +288,13 @@ public class GransoftTestTask extends JFrame {
         return left;
     }
 
+    /**
+     * Swaps the text and colors of two number buttons, giving visual feedback
+     * during the sorting process.
+     *
+     * @param index1 The index of the first button to swap.
+     * @param index2 The index of the second button to swap.
+     */
     private void swapButtons(int index1, int index2) {
         String tempText = numberButtons.get(index1).getText();
         numberButtons.get(index1).setText(numberButtons.get(index2).getText());
